@@ -1,0 +1,42 @@
+=== Username (whoami) ===
+BlackBeard
+
+=== ID/Groups (id) ===
+uid=501(BlackBeard) gid=20(staff) groups=20(staff),12(everyone),61(localaccounts),79(_appserverusr),80(admin),81(_appserveradm),33(_appstore),98(_lpadmin),100(_lpoperator),204(_developer),250(_analyticsusers),395(com.apple.access_ftp),398(com.apple.access_screensharing),399(com.apple.access_ssh),400(com.apple.access_remote_ae)
+
+=== Groups (groups) ===
+staff everyone localaccounts _appserverusr admin _appserveradm _appstore _lpadmin _lpoperator _developer _analyticsusers com.apple.access_ftp com.apple.access_screensharing com.apple.access_ssh com.apple.access_remote_ae
+
+=== Shell (/bin/zsh) ===
+/bin/zsh
+
+=== Running Shell Process (ps -p $$) ===
+  PID TTY           TIME CMD
+34115 ttys000    0:00.05 -zsh
+
+=== Current Working Directory (pwd) ===
+/Users/BlackBeard/Desktop/lab-assignment/Q1-Environment
+
+=== Files in Workspace (ls -la) ===
+total 8
+drwxr-xr-x  3 BlackBeard  staff   96 Jul  3 21:43 .
+drwxr-xr-x  7 BlackBeard  staff  224 Jul  3 21:30 ..
+-rw-r--r--  1 BlackBeard  staff  906 Jul  3 21:43 Environment_Report.txt
+
+=== Network Connectivity Test (ping) ===
+PING google.com (142.250.77.142): 56 data bytes
+64 bytes from 142.250.77.142: icmp_seq=0 ttl=112 time=44.864 ms
+64 bytes from 142.250.77.142: icmp_seq=1 ttl=112 time=40.439 ms
+64 bytes from 142.250.77.142: icmp_seq=2 ttl=112 time=41.553 ms
+64 bytes from 142.250.77.142: icmp_seq=3 ttl=112 time=41.740 ms
+
+--- google.com ping statistics ---
+4 packets transmitted, 4 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 40.439/42.149/44.864/1.645 ms
+
+=== OBSERVATIONS ===
+1. The account "BlackBeard" (UID 501) belongs to several groups including "admin", indicating this user has administrative privileges on the system.
+2. The default shell is zsh, confirmed both by the $SHELL variable and the actual running process (-zsh).
+3. The current working directory was correctly set to the Q1-Environment folder inside the lab-assignment structure.
+4. The workspace initially contained no files, and now holds only this report, consistent with a freshly created folder.
+5. Network connectivity was verified successfully with 0.0% packet loss and an average latency of ~42ms, confirming the system has working internet access.

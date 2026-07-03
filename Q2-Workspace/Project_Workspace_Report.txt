@@ -1,0 +1,45 @@
+=== Directory Structure (find) ===
+ProjectWorkspace
+ProjectWorkspace/docs
+ProjectWorkspace/docs/readme.txt
+ProjectWorkspace/logs
+ProjectWorkspace/src
+ProjectWorkspace/src/app.sh
+
+=== BEFORE: Default Permissions ===
+drwxr-xr-x  5 BlackBeard  staff  160  ProjectWorkspace (default)
+-rw-r--r--  1 BlackBeard  staff    0  readme.txt (default 644)
+-rw-r--r--  1 BlackBeard  staff    0  app.sh (default 644)
+
+=== Umask Value ===
+022
+
+=== AFTER: Modified Permissions ===
+total 0
+drwxr-x---  5 BlackBeard  staff  160 Jul  3 22:20 .
+drwxr-xr-x  4 BlackBeard  staff  128 Jul  3 22:26 ..
+drwxr-xr-x  3 BlackBeard  staff   96 Jul  3 22:20 docs
+drwxr-xr-x  2 BlackBeard  staff   64 Jul  3 22:16 logs
+drwxr-xr-x  3 BlackBeard  staff   96 Jul  3 22:20 src
+ProjectWorkspace/docs/:
+total 0
+drwxr-xr-x  3 BlackBeard  staff   96 Jul  3 22:20 .
+drwxr-x---  5 BlackBeard  staff  160 Jul  3 22:20 ..
+-rw-r-----  1 BlackBeard  staff    0 Jul  3 22:20 readme.txt
+
+ProjectWorkspace/src/:
+total 0
+drwxr-xr-x  3 BlackBeard  staff   96 Jul  3 22:20 .
+drwxr-x---  5 BlackBeard  staff  160 Jul  3 22:20 ..
+-rwxr-x---  1 BlackBeard  staff    0 Jul  3 22:20 app.sh
+
+=== Ownership Details ===
+drwxr-x---  5 BlackBeard  staff  160 Jul  3 22:20 ProjectWorkspace
+
+=== EXPLANATION: How Permissions Protect Project Data ===
+1. The ProjectWorkspace directory was tightened from 755 (drwxr-xr-x) to 750 (drwxr-x---), removing all access for "others" so only the owner and group members can enter the folder.
+2. readme.txt was changed from 644 to 640, removing read access for others — preventing unauthorized users from viewing documentation contents.
+3. app.sh was changed from 644 to 750, adding execute permission for owner and group (needed to run it as a script) while blocking all access for others.
+4. Ownership was explicitly set to BlackBeard:staff using chown -R, ensuring the correct user and group are recognized as responsible for the files.
+5. The umask value of 022 explains why files defaulted to 644 and directories to 755 before any manual changes were made.
+6. Together, these restrictions follow the principle of least privilege: only trusted accounts (owner and group) can read, write, or execute project files, reducing the risk of accidental or malicious data exposure.

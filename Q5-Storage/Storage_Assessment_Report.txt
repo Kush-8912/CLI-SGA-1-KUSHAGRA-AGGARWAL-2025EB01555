@@ -1,0 +1,61 @@
+STORAGE HEALTH ASSESSMENT REPORT
+==================================
+Prepared by: BlackBeard
+Date: July 3, 2026
+
+1. AVAILABLE STORAGE DEVICES (diskutil list)
+----------------------------------------------
+Internal disk0: 500.3 GB physical disk, GUID partition scheme
+  - disk0s1: Apple_APFS_ISC (524.3 MB)
+  - disk0s2: Apple_APFS Container (494.4 GB) -> synthesized as disk3
+  - disk0s3: Apple_APFS_Recovery (5.4 GB)
+disk3 (APFS Container, 494.4 GB) contains volumes:
+  - Macintosh HD (12.6 GB) - system
+  - Preboot (9.0 GB)
+  - Recovery (1.3 GB)
+  - Data (247.7 GB) - user files
+  - VM (2.1 GB) - virtual memory/swap
+
+2. MOUNTED FILE SYSTEMS (df -h)
+----------------------------------------------
+Root (/) on /dev/disk3s1s1: 460Gi total, 12Gi used, 6% capacity
+Data volume on /dev/disk3s5: 460Gi total, 231Gi used, 53% capacity
+System volumes (VM, Preboot, Update): all APFS, low usage
+All filesystems are APFS (Apple File System)
+
+3. DISK USAGE STATISTICS (du -sh)
+----------------------------------------------
+Largest directories under /Users/BlackBeard:
+  - Library: 68G (system/app support files)
+  - Downloads: 24G
+  - AndroidStudioProjects: 3.5G
+  - PromptWars: 2.0G
+  - Desktop: 2.4G
+
+4. INODE UTILIZATION (df -i)
+----------------------------------------------
+Data volume: 2,449,294 inodes used out of ~2.16 billion available (0% utilized)
+Root volume: 458,725 inodes used out of ~2.16 billion available (0% utilized)
+Conclusion: No risk of inode exhaustion; APFS allocates inodes dynamically
+
+5. STORAGE HEALTH OBSERVATIONS
+----------------------------------------------
+- Root filesystem is healthy at only 6% capacity used
+- Data volume (user files) is at 53% capacity - moderate usage, not critical
+- Inode usage is negligible across all volumes due to APFS's dynamic allocation
+- Library and Downloads folders are the largest space consumers and are
+  good candidates for cleanup or archiving
+- Memory (vm_stat) shows active use of compressed memory, indicating some
+  memory pressure, but no swap-related storage concerns
+
+6. RECOMMENDATIONS FOR IMPROVING STORAGE UTILIZATION
+----------------------------------------------
+- Review and clear old files in Downloads (24G) which often accumulates
+  temporary or unneeded files over time
+- Audit Library folder for large caches or unused application support
+  data that can be safely cleared
+- Set up periodic monitoring/alerts for when any volume exceeds 80% capacity
+- Consider archiving large project folders (e.g. AndroidStudioProjects,
+  PromptWars) to external or cloud storage if not actively in use
+- Enable automatic log rotation for any application logs to prevent
+  unbounded growth over time

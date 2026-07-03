@@ -1,0 +1,42 @@
+=== Inode Numbers (before deletion) ===
+original.txt : 55082824
+hardlink.txt : 55082824  (same as original)
+symlink.txt  : 55083145  (different)
+
+=== ls -li BEFORE deletion ===
+55082824 -rw-r--r--  2 BlackBeard  staff  22  hardlink.txt
+55082824 -rw-r--r--  2 BlackBeard  staff  22  original.txt
+55083145 lrwxr-xr-x  1 BlackBeard  staff  12  symlink.txt -> original.txt
+
+=== stat output ===
+16777230 55082824 -rw-r--r-- 1 BlackBeard staff 0 22 "Jul  3 22:32:50 2026" "Jul  3 22:29:06 2026" "Jul  3 22:32:48 2026" "Jul  3 22:29:06 2026" 4096 8 0x40 hardlink.txt
+16777230 55083145 lrwxr-xr-x 1 BlackBeard staff 0 12 "Jul  3 22:29:56 2026" "Jul  3 22:29:56 2026" "Jul  3 22:29:56 2026" "Jul  3 22:29:56 2026" 4096 0 0 symlink.txt
+
+=== After deleting original.txt ===
+cat hardlink.txt output:
+Original file content
+
+cat symlink.txt output:
+cat: symlink.txt: No such file or directory
+
+=== ls -li AFTER deletion ===
+total 8
+55082824 -rw-r--r--  1 BlackBeard  staff  22 Jul  3 22:29 hardlink.txt
+55083145 lrwxr-xr-x  1 BlackBeard  staff  12 Jul  3 22:29 symlink.txt -> original.txt
+
+=== Hard Link vs Symbolic Link Comparison ===
+Property               | Hard Link              | Symbolic Link
+------------------------|------------------------|------------------------
+Inode number            | Same as original       | Different from original
+Points to                | Same data on disk      | Path/filename string
+Survives original delete | Yes                    | No (becomes broken/dangling)
+Size shown by ls -l      | Same as original file  | Length of the path string
+Can cross filesystems    | No                     | Yes
+Link count effect        | Increases original's count | Does not affect original's count
+
+=== Conclusions ===
+1. A hard link is essentially a second name pointing directly to the same inode, meaning the same data on disk. Deleting one name does not remove the data as long as at least one link (name) remains.
+2. A symbolic link is a separate, independent file that stores only the path to its target. It has its own inode and does not affect the target's link count.
+3. When original.txt was deleted, hardlink.txt continued to work because the inode still had one remaining reference, while symlink.txt broke because it pointed to a filename that no longer existed.
+4. This experiment demonstrates that in Linux/Unix filesystems, a file's true identity is its inode, not its filename — filenames are just directory entries pointing to inodes.
+5. Practically, hard links are useful for backups/redundancy within the same filesystem, while symbolic links are more flexible (can cross filesystems, can link to directories) but are fragile if the target moves or is deleted.
