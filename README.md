@@ -4,7 +4,7 @@
 
 **Roll Number:** 2025EB01555
 
-**Modules Covered:** 1–4 (Linux Fundamentals)
+**Modules Covered:** 1–4
 
 ## Overview
 This repository contains the complete submission for the Graded Lab Assignment covering Linux environment verification, permissions, file system links, I/O operations, and storage assessment. Each question is documented with the commands executed, their outputs, screenshots, and brief explanations of observations.
