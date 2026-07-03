@@ -1,3 +1,5 @@
+Prepared by: Kushagra Aggarwal (2025EB01555)
+
 === Inode Numbers (before deletion) ===
 original.txt : 55082824
 hardlink.txt : 55082824  (same as original)

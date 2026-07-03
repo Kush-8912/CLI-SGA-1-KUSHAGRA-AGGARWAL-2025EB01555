@@ -1,3 +1,5 @@
+Prepared by: Kushagra Aggarwal (2025EB01555)
+
 === Directory Structure (find) ===
 ProjectWorkspace
 ProjectWorkspace/docs
