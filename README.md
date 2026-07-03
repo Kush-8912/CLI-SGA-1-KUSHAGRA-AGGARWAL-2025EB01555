@@ -1,4 +1,4 @@
-# CLI-SGA-1 — Linux Lab Assignment
+# Command Line Interfaces and Scripting — Staff Graded Assignment-1
 
 **Name:** Kushagra Aggarwal
 
